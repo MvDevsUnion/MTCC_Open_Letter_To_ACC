@@ -1,0 +1,19 @@
+name: Validate Signatures
+
+on:
+pull_request:
+paths:
+- 'SIGNATURES.md'
+
+jobs:
+validate:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v4
+
+```
+  - name: Validate format
+    run: |
+      echo "Checking signature format..."
+      grep -E '^- .+' SIGNATURES.md || exit 1
+```
